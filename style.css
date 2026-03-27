@@ -593,3 +593,26 @@ nav {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.55rem; color: var(--yellow);
 }
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.site-footer .footer-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: var(--yellow);
+  margin-bottom: 6px;
+  display: block;
+}
+.site-footer a {
+  color: var(--red);
+  text-decoration: none;
+  font-weight: 700;
+}
+.site-footer a:hover { text-decoration: underline; }
