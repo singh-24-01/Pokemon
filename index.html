@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéDex — Explore all Pokémon</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚪</text></svg>">
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg class="pokeball-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="#e53935" stroke="#fff" stroke-width="4"/>
+      <path d="M2 50 Q2 50 98 50" stroke="#fff" stroke-width="6"/>
+      <circle cx="50" cy="50" r="14" fill="#fff" stroke="#fff" stroke-width="4"/>
+      <circle cx="50" cy="50" r="8" fill="#e53935" stroke="#fff" stroke-width="3"/>
+      <circle cx="50" cy="50" r="3" fill="#fff"/>
+    </svg>
+    <span>PokéDex</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Pokédex</a></li>
+    <li><a href="battle.html">⚔️ Battle</a></li>
+    <li><a href="quiz.html">❓ Quiz</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particles"></canvas>
+  <div class="hero-content">
+    <h1 class="hero-title">Gotta Catch<br>'Em All</h1>
+    <p class="hero-sub">Explore all 1025+ Pokémon from every generation</p>
+    <div class="hero-search">
+      <input type="text" id="search-input" placeholder="Search by name or #number..." autocomplete="off">
+      <span class="search-icon">🔍</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── Filters ── -->
+<div class="filters-section">
+  <div class="filter-group">
+    <span class="filter-label">Generation</span>
+    <div class="filter-btns" id="gen-filters">
+      <button class="filter-btn active" data-gen="all">All</button>
+      <button class="filter-btn" data-gen="1">Gen I</button>
+      <button class="filter-btn" data-gen="2">Gen II</button>
+      <button class="filter-btn" data-gen="3">Gen III</button>
+      <button class="filter-btn" data-gen="4">Gen IV</button>
+      <button class="filter-btn" data-gen="5">Gen V</button>
+      <button class="filter-btn" data-gen="6">Gen VI</button>
+      <button class="filter-btn" data-gen="7">Gen VII</button>
+      <button class="filter-btn" data-gen="8">Gen VIII</button>
+      <button class="filter-btn" data-gen="9">Gen IX</button>
+    </div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Type</span>
+    <div class="filter-btns" id="type-filters">
+      <button class="filter-btn active" data-type="all">All</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Grid ── -->
+<div class="poke-grid" id="poke-grid">
+  <div class="loader" id="initial-loader" style="grid-column:1/-1">
+    <svg class="pokeball-spin" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="48" fill="#e53935" stroke="#fff" stroke-width="4"/>
+      <path d="M2 50 Q50 50 98 50" stroke="#fff" stroke-width="6"/>
+      <circle cx="50" cy="50" r="10" fill="#fff" stroke="#fff" stroke-width="2"/>
+    </svg>
+    Loading Pokémon...
+  </div>
+</div>
+<div class="load-more-wrap">
+  <button class="btn-primary" id="load-more-btn" style="display:none">Load More</button>
+</div>
+
+<!-- ── Modal ── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-name" id="modal-name"></div>
+        <div style="display:flex;gap:6px;margin-top:8px" id="modal-types"></div>
+      </div>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-top">
+        <div class="modal-sprite-wrap">
+          <img class="modal-sprite" id="modal-sprite" src="" alt="">
+          <button class="shiny-toggle" id="shiny-toggle">✨ Shiny</button>
+          <div id="modal-number" style="font-size:0.7rem;color:var(--text-muted);font-weight:800"></div>
+        </div>
+        <div class="modal-info">
+          <p class="modal-desc" id="modal-desc">Loading...</p>
+          <div class="info-row">
+            <div class="info-item"><label>Height</label><span id="modal-height"></span></div>
+            <div class="info-item"><label>Weight</label><span id="modal-weight"></span></div>
+          </div>
+          <div class="info-row">
+            <div class="info-item"><label>Base EXP</label><span id="modal-exp"></span></div>
+            <div class="info-item"><label>Habitat</label><span id="modal-habitat"></span></div>
+          </div>
+          <div class="abilities-section">
+            <div class="stats-title">Abilities</div>
+            <div class="abilities-list" id="modal-abilities"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="stats-title">Base Stats</div>
+        <div id="modal-stats"></div>
+      </div>
+
+      <div class="evo-section" id="evo-section">
+        <div class="stats-title" style="margin-bottom:12px">Evolution Chain</div>
+        <div class="evo-chain" id="evo-chain"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="api.js"></script>
+<script src="pokedex.js"></script>
+</body>
+</html>

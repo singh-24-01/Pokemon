@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who's That Pokémon? — PokéDex</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg class="pokeball-icon" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="48" fill="#e53935" stroke="#fff" stroke-width="4"/>
+      <path d="M2 50 Q50 50 98 50" stroke="#fff" stroke-width="6"/>
+      <circle cx="50" cy="50" r="10" fill="#fff" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <span>PokéDex</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Pokédex</a></li>
+    <li><a href="battle.html">⚔️ Battle</a></li>
+    <li><a href="quiz.html" class="active">❓ Quiz</a></li>
+  </ul>
+</nav>
+
+<div class="quiz-page">
+
+  <!-- Header -->
+  <div class="quiz-header">
+    <h1 class="quiz-title">Who's That<br>Pokémon?</h1>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+      <div class="quiz-stats">
+        <div class="quiz-stat"><label>Score</label><span id="score">0</span></div>
+        <div class="quiz-stat"><label>Streak 🔥</label><span id="streak">0</span></div>
+        <div class="quiz-stat"><label>Best 🏆</label><span id="best">0</span></div>
+      </div>
+      <div class="difficulty-btns">
+        <button class="diff-btn active" data-diff="easy">Easy (Gen I)</button>
+        <button class="diff-btn" data-diff="medium">Medium (Gen I-III)</button>
+        <button class="diff-btn" data-diff="hard">Hard (All)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timer -->
+  <div class="timer-bar-wrap"><div class="timer-bar" id="timer-bar" style="width:100%"></div></div>
+
+  <!-- Silhouette -->
+  <div class="quiz-silhouette-wrap">
+    <div class="quiz-bg-text">WHO'S THAT POKÉMON?</div>
+    <img class="quiz-img hidden" id="quiz-img" src="" alt="">
+  </div>
+
+  <!-- Question text -->
+  <div class="quiz-question" id="quiz-question">WHO'S THAT POKÉMON? ❓</div>
+
+  <!-- Choices -->
+  <div class="quiz-choices" id="quiz-choices">
+    <button class="choice-btn" disabled>—</button>
+    <button class="choice-btn" disabled>—</button>
+    <button class="choice-btn" disabled>—</button>
+    <button class="choice-btn" disabled>—</button>
+  </div>
+
+  <!-- Result + Next -->
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div class="quiz-result waiting" id="quiz-result" style="flex:1;min-width:200px">
+      Choose wisely! ⚡
+    </div>
+    <button class="btn-next" id="next-btn" disabled>Next →</button>
+  </div>
+
+</div>
+
+<script src="api.js"></script>
+<script src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Battle — PokéDex</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <svg class="pokeball-icon" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="50" r="48" fill="#e53935" stroke="#fff" stroke-width="4"/>
+      <path d="M2 50 Q50 50 98 50" stroke="#fff" stroke-width="6"/>
+      <circle cx="50" cy="50" r="10" fill="#fff" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <span>PokéDex</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Pokédex</a></li>
+    <li><a href="battle.html" class="active">⚔️ Battle</a></li>
+    <li><a href="quiz.html">❓ Quiz</a></li>
+  </ul>
+</nav>
+
+<div class="battle-page">
+
+  <!-- ── Starter Selection ── -->
+  <div class="battle-select" id="battle-select">
+    <h1>⚔️ Choose Your Starter!</h1>
+    <p>Pick your partner Pokémon to begin the battle</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap">
+      <button class="diff-btn active" data-pool="kanto">Kanto Starters</button>
+      <button class="diff-btn" data-pool="johto">Johto Starters</button>
+      <button class="diff-btn" data-pool="hoenn">Hoenn Starters</button>
+      <button class="diff-btn" data-pool="sinnoh">Sinnoh Starters</button>
+      <button class="diff-btn" data-pool="unova">Unova Starters</button>
+    </div>
+    <div class="starter-grid" id="starter-grid">
+      <div class="loader" style="grid-column:1/-1">
+        <svg class="pokeball-spin" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#e53935" stroke="#fff" stroke-width="4"/><path d="M2 50 Q50 50 98 50" stroke="#fff" stroke-width="6"/><circle cx="50" cy="50" r="10" fill="#fff"/></svg>
+        Loading starters...
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Battle Arena ── -->
+  <div class="battle-arena" id="battle-arena">
+
+    <!-- Scene -->
+    <div class="battle-scene" id="battle-scene">
+      <div class="enemy-side">
+        <div class="battle-hp-bar">
+          <div class="battle-hp-name" id="enemy-name">Wild Pokémon</div>
+          <div class="battle-hp-info">
+            <span id="enemy-level">Lv.??</span>
+            <span id="enemy-hp-text">HP: ??/??</span>
+          </div>
+          <div class="hp-track"><div class="hp-fill" id="enemy-hp-fill" style="width:100%;background:#4caf50"></div></div>
+        </div>
+      </div>
+      <div class="player-side">
+        <div class="battle-hp-bar">
+          <div class="battle-hp-name" id="player-name">Your Pokémon</div>
+          <div class="battle-hp-info">
+            <span id="player-level">Lv.??</span>
+            <span id="player-hp-text">HP: ??/??</span>
+          </div>
+          <div class="hp-track"><div class="hp-fill" id="player-hp-fill" style="width:100%;background:#4caf50"></div></div>
+        </div>
+      </div>
+      <div class="sprite-enemy">
+        <img class="battle-sprite" id="enemy-sprite" src="" alt="">
+      </div>
+      <div class="sprite-player">
+        <img class="battle-sprite" id="player-sprite" src="" alt="">
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="battle-log" id="battle-log">
+      <span class="log-line">A wild Pokémon appeared! Choose your move.</span>
+    </div>
+
+    <!-- Moves -->
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="move-grid" id="move-grid">
+        <!-- filled by JS -->
+      </div>
+      <div class="battle-actions">
+        <button class="btn-catch" id="catch-btn">🎾 Throw Pokéball!</button>
+        <button class="btn-primary" id="flee-btn" style="padding:12px 20px;font-size:0.85rem">🏃 Flee</button>
+        <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <span class="caught-count" id="caught-count">Caught: 0</span>
+          <div class="caught-collection" id="caught-collection"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="api.js"></script>
+<script src="battle.js"></script>
+</body>
+</html>
